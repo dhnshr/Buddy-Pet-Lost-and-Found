@@ -1,0 +1,73 @@
+{% extends "sentry/layout.html" %}
+{% load static %}
+
+{% block head %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="{% static 'sentry/style3.css' %}" rel="stylesheet">
+    <style>.title {
+        font-size: 25px;
+    }</style>
+</head>
+{% endblock %}
+
+{% block body %}
+    
+    <div class="container">
+        <header class="name">
+            <h1>Apna Home Animal Shelter , Siddhi Karavale, Maharashtra
+                Open on all days from 10 A.M to 8:30 P.M .
+            </h1>
+        </header>
+        <div class="list">
+        </div>
+    </div>
+    <div class ="thank">
+        <h5>Thank you for visiting the site . Please do visit Adoption center</h5>
+    </div>
+    <script>
+        let list = document.querySelector('.list');
+let listCard = document.querySelector('.listCard');
+let products = [
+    {
+        id: 1,
+        name: 'Breed: Indian pariah dog',
+        disc: '3 years 4 months old, Loyal , Elegant , Sensitive , Silent ',
+        dur: 'Duration at Adoption: 1 year',
+        image: "{% static 'image/dog1.png' %}",
+    },
+    {
+        id: 2,
+        name: 'Breed: Indian pariah dog',
+        disc: '2 years 3 months old , Playful , Obedient',
+        dur: 'Duration at Adoption: 1 year',
+        image: "{% static 'image/dog2.png' %}",
+    },
+    {
+        id: 3,
+        name: 'Breed: Indian pariah dog',
+        disc: '2 months old , Friendly , Gentle , Hyperactive ',
+        dur: 'Duration at Adoption: 1 months',
+        image: "{% static 'image/dog3.png' %}",
+    },
+
+];
+function initApp(){
+    products.forEach((value, key) =>{
+        let newDiv = document.createElement('div');
+        newDiv.classList.add('item');
+        newDiv.innerHTML = `
+            <img src="${value.image}">
+            <div class="title">${value.name}</div>
+            <div class="title">${value.disc}</div>
+            <div class="title">${value.dur}</div>`;
+        list.appendChild(newDiv);
+    })
+}
+initApp();
+    </script>
+
+    {% endblock %}

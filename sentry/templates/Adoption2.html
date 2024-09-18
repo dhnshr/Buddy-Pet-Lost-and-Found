@@ -1,0 +1,78 @@
+{% extends "sentry/layout.html" %}
+{% load static %}
+
+{% block head %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="{% static 'sentry/style3.css' %}" rel="stylesheet">
+    <style>.title {
+        font-size: 25px;
+    }</style>
+{% endblock %}
+
+{% block body %}
+    
+    <div class="container">
+        <header class="name">
+            <h1>Varsha Pet Adoption Center ,Plot No, 171, L.Sanjay Kumar Gorad Marg, Nerul, Maharashtra
+                Open on all days from 10 A.M to 8:30 P.M .
+            </h1>
+        </header>
+        <div class="list">
+        </div>
+    </div>
+    <div class ="thank">
+        <h5>Thank you for visiting the site . Please do visit Adoption center</h5>
+    </div>    
+    <script>
+        let list = document.querySelector('.list');
+let listCard = document.querySelector('.listCard');
+let products = [
+    {
+        id: 1,
+        name: 'Breed : Ringneck Parakeet Parrot',
+        disc: ' 2 years Old , Interactive , Playful ',
+        dur: 'Duration at Adoption: 4 months',
+        image: "{% static 'image/bird1.png' %}",
+    },
+    {
+        id: 2,
+        name: 'Breed: Love birds (Both for adoption and single adoption of bird is not permitted)',
+        disc: 'White one :- 6 months old , BLue one :- 5 Months',
+        dur: 'Duration at Adoption: 1 month',
+        image: "{% static 'image/bird2.png' %}",
+    },
+    {
+        id: 3,
+        name: 'Breed: Indian Billi/Spotted Cat',
+        disc: '4 months old , Friendly , Gentle , Hyperactive ',
+        dur: 'Duration at Adoption: 1 months',
+        image: "{% static 'image/cat1.png' %}",
+    },
+    {
+        id: 4,
+        name: 'Breed: Indian pariah dog',
+        disc: '4 years old , Loyal , Protective , Friendly , Gentle  ',
+        dur: 'Duration at Adoption: 10 months',
+        image: "{% static 'image/dog4.png' %}",
+    },
+
+];
+function initApp(){
+    products.forEach((value, key) =>{
+        let newDiv = document.createElement('div');
+        newDiv.classList.add('item');
+        newDiv.innerHTML = `
+            <img src="${value.image}">
+            <div class="title">${value.name}</div>
+            <div class="title">${value.disc}</div>
+            <div class="title">${value.dur}</div>`;
+        list.appendChild(newDiv);
+    })
+}
+initApp();
+    </script>
+{% endblock %}

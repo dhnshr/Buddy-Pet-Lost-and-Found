@@ -1,0 +1,149 @@
+{% extends "sentry/layout.html" %}
+{% load static %}
+
+{% block head %}
+<head>
+    <title>Adoption Centers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        .center-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            margin: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            color: #333 !important; /* Change link color */
+            display: block; /* Make the entire card clickable */
+            text-decoration: none;
+        }
+    </style>
+</head>
+{% endblock %}
+
+{% block body %}
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel">Login</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="login-form" class="main-form needs-validation" action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" name="email" class="form-control" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control" placeholder="Password" required>
+                </div>     
+        </div>
+        <div class="modal-footer">
+            <p>Still don't have an account? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#registerModal">Register here</a></p>
+            <button id="login-button" type="submit" class="btn btn-dark custom-btn">Login</button>
+        </div></form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel">Register</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="register-form" class="main-form needs-validation" action="{% url 'register' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" name="email" class="form-control" placeholder="Email" required>                                        
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control" placeholder="Password" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" name="confirmation" class="form-control" placeholder="Confirm Password" required>
+                </div>            
+        </div>
+        <div class="modal-footer">
+            <p>Already have an account? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">Sign In</a></p>
+            <button id="register-button" type="submit" class="btn btn-dark custom-btn">Register</button>
+        </div></form>            
+        </div>
+    </div>
+</div>
+
+
+<header>
+    <h1>Adoption Centers Near You</h1>
+</header>
+
+<div class="center-card">
+    <a href="{% url 'Adoption2' %}">
+    <h2>Varsha Pet Adoption Center</h2>
+    <p>Plot No, 171, L.Sanjay Kumar Gorad Marg, Nerul, Maharashtra</p>
+    <p>Phone: (555) 123-4567</p>
+    <p>Timing: Open on all days from 10 A.M to 8:30 P.M .</p>
+</a>
+</div>
+
+<div class="center-card">
+    <a href="{% url 'Adoption1' %}">
+    <h2>Apna Home Animal Shelter</h2>
+    <p>Address: Siddhi Karavale, Maharashtra.</p>
+    <p>Phone: (555) 987-6543</p>
+    <p>Timing: Open on all days from 10 A.M to 8:30 P.M .</p>
+</a>
+</div>
+
+
+
+
+<section id="about" class="about">
+        <h2 class="text-white text-shadow landing-text-title">What it is for </h2>
+        <p class="text-white text-shadow landing-text" >At Buddy Adoption Centre, we are on a mission to provide a loving and secure environment for animals in need. Our goal is to ensure that every animal that comes through our doors finds a forever home filled with care and affection. We firmly believe that every animal deserves a second chance at happiness. We connect with local adoption centres and provides them a platform to share the description of pets which are available for adoption.</p>
+
+        <h2 class="text-white text-shadow landing-text-title">What We Do</h2>
+        <ul>
+            <li><p class="text-white text-shadow landing-text"><strong>Rescue:</strong> We rescue animals from various situations, including strays, abuse cases, and those abandoned by their owners. </p></li>
+            <li><p class="text-white text-shadow landing-text"><strong>Rehabilitate:</strong> Our experienced team provides necessary medical care, attention, and rehabilitation to ensure that each animal is ready for their forever home.</p></li>
+            <li><p class="text-white text-shadow landing-text"><strong>Rehome:</strong> We facilitate the adoption of our rescued animals, matching them with loving families where they can thrive and experience the care they deserve.</p></li>
+        </ul>
+        <h2 class="text-white text-shadow landing-text-title">Join Us</h2>
+        <p class="text-white text-shadow landing-text">We invite you to be a part of our mission. Whether you are looking to adopt a new family member, volunteer your time, or make a donation, your support is invaluable. Together, we can make a difference in the lives of these wonderful animals.</p>
+    </section>
+
+{% if user.is_authenticated %}
+    <a href="{% url 'sentry' %}" class="landing-btn">
+        <button class="btn btn-dark btn-shadow custom-btn" type="button">Go to Sentry Map</button>
+    </a>
+{% else %}
+    <a href="#" class="landing-btn" data-toggle="modal" data-target="#registerModal">
+        <button class="btn btn-dark btn-shadow custom-btn" type="button">Get Started</button>
+    </a>
+{% endif %}
+<br><br><br>
+</section>
+
+{% endblock %}
